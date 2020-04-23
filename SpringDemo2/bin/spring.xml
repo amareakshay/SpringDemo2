@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+
+	<bean id="triangle" class="org.akshay.demo.Triangle" autowire="byName">
+	 	<property name="type" value="Equilateral"/> 
+	</bean>
+	
+	<!-- Bead definition for calling custom method for initialization
+	 <bean id="triangle" class="org.akshay.demo.Triangle" autowire="byName" init-method=myInit>
+	 	<property name="type" value="Equilateral"/> 
+	 </bean> 
+	 -->
+	
+	<bean id="pointA" class="org.akshay.demo.Point">
+		<property name="x" value="0"/>
+		<property name="y" value="0"/>
+	</bean>
+
+	<bean id="pointB" class="org.akshay.demo.Point">
+		<property name="x" value="20"/>
+		<property name="y" value="0"/>
+	</bean>
+	
+	<bean id="pointC" class="org.akshay.demo.Point">
+		<property name="x" value="${pointC.pointX}"/>
+		<property name="y" value="${pointC.pointY}"/>
+	</bean>
+	
+	<!--  Adding a Bean for the Post processor -->
+    <!--
+	<bean class="org.akshay.demo.DisplayBeanPostProcessor" />
+	 -->
+	<!-- Adding a bean factory post processor -->
+	<bean class="org.akshay.demo.MyBeanFactoryPostProcessor" />
+	
+	<!-- We will be taking values for pointC from a properties file
+	     for which we will be using the out of the box Springs PropertyPlaceholderConfigurer
+	 -->
+	 <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	 	<property name="locations" value="pointsconfig.properties" />
+	 </bean>
+	
+	
+	
+</beans>
