@@ -28,13 +28,12 @@ public class DrawingApplication {
 		AbstractApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 		// Now register shutdown hook
 		context.registerShutdownHook();
-		System.out.println("Getting the Triangle Bean in the Main Application now");
+		System.out.println("Getting the Shape Bean in the Main Application now");
 		//Triangle triangle = (Triangle) factory.getBean("triangle");
 		
-		Triangle triangle = (Triangle) context.getBean("triangle");
+		Shape shape = (Shape) context.getBean("circle");
 		
-		
-		triangle.draw();
+		shape.draw();
 
 	}
 
