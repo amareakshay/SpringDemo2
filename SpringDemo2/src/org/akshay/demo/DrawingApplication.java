@@ -34,7 +34,8 @@ public class DrawingApplication {
 		Shape shape = (Shape) context.getBean("circle");
 		
 		shape.draw();
-
+		
+		System.out.println(context.getMessage("greeting", null, "Default Hello from Main", null));
 	}
 
 }

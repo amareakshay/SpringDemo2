@@ -5,7 +5,6 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
 	xmlns:context="http://www.springframework.org/schema/context">
 
-	<context:annotation-config/>
 
 <!-- 	<bean id="triangle" class="org.akshay.demo.Triangle" autowire="byName">
 	 	<property name="type" value="Equilateral"/> 
@@ -29,17 +28,27 @@
 	
 	<bean id="pointC" class="org.akshay.demo.Point">
 		<qualifier value="circleRelated" />
-		<property name="x" value="0" />
-		<property name="y" value="-20" />
+		<property name="x" value="${pointC.pointX}" />
+		<property name="y" value="${pointC.pointY}" />
 	</bean>
 	
 <!-- 	<bean id="circle" class="org.akshay.demo.Circle">  
 	
 	</bean> -->
 	
-<!-- 	 <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<!--  Bean for injecting values for properties from a file -->
+	 <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 	 	<property name="locations" value="pointsconfig.properties" />
-     </bean> -->
+     </bean>
+     
+     <!-- Bean for getting messages from a properties file -->
+     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+	 	<property name="basenames">
+	 	 	<list>
+	 	 		<value>mymessages</value>
+	 	 	</list>
+	 	 </property>
+     </bean>
      
 <!--      <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" /> -->
 <!-- We dont need to explicitly define the post processors, as the below tag will take care of all
